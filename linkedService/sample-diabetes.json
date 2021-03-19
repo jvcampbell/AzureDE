@@ -1,0 +1,10 @@
+{
+	"name": "sample-diabetes",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"sasUri": "https://azureopendatastorage.blob.core.windows.net/mlsamples/diabetes?\"\""
+		}
+	}
+}
