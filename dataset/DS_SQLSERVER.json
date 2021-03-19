@@ -1,5 +1,5 @@
 {
-	"name": "AdventureworksLT",
+	"name": "DS_SQLSERVER",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AdventureworksLTdb",
