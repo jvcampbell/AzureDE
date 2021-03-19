@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Insert_Pipeline_Parameter_Values",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -15,8 +15,63 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"enableStaging": false
-				}
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT \nQUOTENAME(table_Schema) + '.' + QUOTENAME(TABLE_NAME) AS Table_Name, TABLE_CATALOG\n   FROM information_Schema.tables\n   WHERE TABLE_TYPE = 'BASE TABLE'",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Table_Name",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Table_Name",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "TABLE_CATALOG",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "TABLE_CATALOG",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_SQLSERVER",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_ASQLDB_PIPELINE_PARAMETER",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
