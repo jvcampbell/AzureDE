@@ -1,5 +1,5 @@
 {
-	"name": "PipelineParameter",
+	"name": "DS_ASQLDB_PIPEINE_PARAMETER",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "PipelineParameters",
