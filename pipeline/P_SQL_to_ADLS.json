@@ -89,7 +89,17 @@
 							"outputs": [
 								{
 									"referenceName": "DS_ADSL2_JSON",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"table_catalog_name": {
+											"value": "@{item().Table_Catalog}",
+											"type": "Expression"
+										},
+										"table_name": {
+											"value": "@{item().Table_Name}",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
