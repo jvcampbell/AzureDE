@@ -194,6 +194,7 @@
 								"value": "@activity('Get-Table-Names').output.value",
 								"type": "Expression"
 							},
+							"isSequential": true,
 							"activities": [
 								{
 									"name": "Copy-Table-To-DL",
@@ -211,31 +212,22 @@
 										"source": {
 											"type": "AzureSqlSource",
 											"sqlReaderQuery": {
-												"value": "USE @{item().Table_Catalog} SELECT * FROM @{item().Table_Name}",
+												"value": "SELECT * FROM @{item().Table_Name}",
 												"type": "Expression"
 											},
 											"queryTimeout": "02:00:00",
 											"partitionOption": "None"
 										},
 										"sink": {
-											"type": "ParquetSink",
+											"type": "JsonSink",
 											"storeSettings": {
 												"type": "AzureBlobFSWriteSettings"
 											},
 											"formatSettings": {
-												"type": "ParquetWriteSettings"
+												"type": "JsonWriteSettings"
 											}
 										},
-										"enableStaging": false,
-										"dataIntegrationUnits": 2,
-										"translator": {
-											"type": "TabularTranslator",
-											"typeConversion": true,
-											"typeConversionSettings": {
-												"allowDataTruncation": true,
-												"treatBooleanAsNumber": false
-											}
-										}
+										"enableStaging": false
 									},
 									"inputs": [
 										{
@@ -246,11 +238,17 @@
 									],
 									"outputs": [
 										{
-											"referenceName": "DS_ADSL2",
+											"referenceName": "DS_ADSL2_JSON",
 											"type": "DatasetReference",
 											"parameters": {
-												"table_name": "@{item().Table_Name}",
-												"table_catalog_name": "@{item().Table_Catalog}"
+												"table_catalog_name": {
+													"value": "@{item().Table_Catalog}",
+													"type": "Expression"
+												},
+												"table_name": {
+													"value": "@{item().Table_Name}",
+													"type": "Expression"
+												}
 											}
 										}
 									]
@@ -264,7 +262,7 @@
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/datasets/DS_ASQLDB_PIPELINE_PARAMETER')]",
 				"[concat(variables('workspaceId'), '/datasets/DS_SQLSERVER')]",
-				"[concat(variables('workspaceId'), '/datasets/DS_ADSL2')]"
+				"[concat(variables('workspaceId'), '/datasets/DS_ADSL2_JSON')]"
 			]
 		},
 		{
@@ -290,13 +288,14 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"fileName": {
-							"value": "@{dataset().Table_Name}/@{formatDateTime(utcnow(),'yyyy')}/@{formatDateTime(utcnow(),'MM')}/@{formatDateTime(utcnow(),'dd')}/@{dataset().Table_Name}@{formatDateTime(utcnow(),'HH')}\n\n",
+							"value": "@{item().Table_Name}__@{formatDateTime(utcnow(),'yyyy')}_@{formatDateTime(utcnow(),'MM')}_@{formatDateTime(utcnow(),'dd')}_@{formatDateTime(utcnow(),'HH')}",
 							"type": "Expression"
 						},
 						"folderPath": {
-							"value": "@concat('AdventureWorks_DataLake/raw/',dataset().table_catalog_name)\n",
+							"value": "@concat('AdventureWorks_DataLake/raw/',dataset().table_catalog_name)\n\n",
 							"type": "Expression"
-						}
+						},
+						"fileSystem": "adventureworksfs"
 					},
 					"compressionCodec": "snappy"
 				},
@@ -516,6 +515,45 @@
 				"typeProperties": {}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/DS_ADSL2_JSON')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adventure-wks-WorkspaceDefaultStorage",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"table_catalog_name": {
+						"type": "string"
+					},
+					"table_name": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@{item().Table_Name}__@{formatDateTime(utcnow(),'yyyy')}_@{formatDateTime(utcnow(),'MM')}_@{formatDateTime(utcnow(),'dd')}_@{formatDateTime(utcnow(),'HH')}",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@concat('AdventureWorks_DataLake/json/',dataset().table_catalog_name)\n\n",
+							"type": "Expression"
+						},
+						"fileSystem": "adventureworksfs"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/adventure-wks-WorkspaceDefaultStorage')]"
+			]
 		}
 	]
 }
