@@ -22,9 +22,34 @@
 						"partitionOption": "None"
 					},
 					"sink": {
-						"type": "AzureSqlSink"
+						"type": "AzureSqlSink",
+						"preCopyScript": "DELETE dbo.pipeline_parameter",
+						"disableMetricsCollection": false
 					},
-					"enableStaging": false,
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "adventure-wks-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "adventureworksfs/Temp",
+						"enableCompression": true
+					},
+					"logSettings": {
+						"enableCopyActivityLog": true,
+						"copyActivityLogSettings": {
+							"logLevel": "Info",
+							"enableReliableLogging": false
+						},
+						"logLocationSettings": {
+							"linkedServiceName": {
+								"referenceName": "adventure-wks-WorkspaceDefaultStorage",
+								"type": "LinkedServiceReference"
+							},
+							"path": "adventureworksfs/Temp"
+						}
+					},
+					"dataIntegrationUnits": 2,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
