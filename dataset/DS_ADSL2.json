@@ -23,7 +23,7 @@
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@concat('lake/raw/',item().table_catalog_name)\n",
+					"value": "@concat('lake/raw/',item().table_catalog)\n",
 					"type": "Expression"
 				},
 				"fileSystem": "'adventureworksfs'"
