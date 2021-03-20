@@ -18,12 +18,9 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@{item().Table_Name}__@{formatDateTime(utcnow(),'yyyy')}_@{formatDateTime(utcnow(),'MM')}_@{formatDateTime(utcnow(),'dd')}_@{formatDateTime(utcnow(),'HH')}__@{formatDateTime(utcnow(),'SS')}\n\n",
-					"type": "Expression"
-				},
+				"fileName": "[SalesLT].[Customer]/2021/03/20",
 				"folderPath": {
-					"value": "@concat('lake/raw/',item().table_catalog)\n",
+					"value": "@concat('lake/raw/',dataset().table_catalog_name)",
 					"type": "Expression"
 				},
 				"fileSystem": "adventureworksfs"
