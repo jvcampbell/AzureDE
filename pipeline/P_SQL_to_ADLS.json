@@ -69,24 +69,16 @@
 									"partitionOption": "None"
 								},
 								"sink": {
-									"type": "ParquetSink",
+									"type": "JsonSink",
 									"storeSettings": {
 										"type": "AzureBlobFSWriteSettings"
 									},
 									"formatSettings": {
-										"type": "ParquetWriteSettings"
+										"type": "JsonWriteSettings"
 									}
 								},
 								"enableStaging": false,
-								"dataIntegrationUnits": 2,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
+								"dataIntegrationUnits": 2
 							},
 							"inputs": [
 								{
@@ -96,12 +88,8 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "DS_ADSL2",
-									"type": "DatasetReference",
-									"parameters": {
-										"table_name": "@{item().Table_Name}",
-										"table_catalog_name": "@{item().Table_Catalog}"
-									}
+									"referenceName": "DS_ADSL2_JSON",
+									"type": "DatasetReference"
 								}
 							]
 						}
