@@ -1,0 +1,34 @@
+{
+	"name": "DS_ADSL2_JSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adventure-wks-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"table_catalog_name": {
+				"type": "string"
+			},
+			"table_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@{item().Table_Name}__@{formatDateTime(utcnow(),'yyyy')}_@{formatDateTime(utcnow(),'MM')}_@{formatDateTime(utcnow(),'dd')}_@{formatDateTime(utcnow(),'HH')}",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('AdventureWorks_DataLake/json/',dataset().table_catalog_name)\n\n",
+					"type": "Expression"
+				},
+				"fileSystem": "adventureworksfs"
+			}
+		},
+		"schema": {}
+	}
+}
