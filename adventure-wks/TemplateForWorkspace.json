@@ -226,7 +226,29 @@
 												"type": "ParquetWriteSettings"
 											}
 										},
-										"enableStaging": false,
+										"enableStaging": true,
+										"stagingSettings": {
+											"linkedServiceName": {
+												"referenceName": "adventure-wks-WorkspaceDefaultStorage",
+												"type": "LinkedServiceReference"
+											},
+											"path": "adventureworksfs/Temp"
+										},
+										"logSettings": {
+											"enableCopyActivityLog": true,
+											"copyActivityLogSettings": {
+												"logLevel": "Info",
+												"enableReliableLogging": false
+											},
+											"logLocationSettings": {
+												"linkedServiceName": {
+													"referenceName": "adventure-wks-WorkspaceDefaultStorage",
+													"type": "LinkedServiceReference"
+												},
+												"path": "adventureworksfs/Temp"
+											}
+										},
+										"dataIntegrationUnits": 2,
 										"translator": {
 											"type": "TabularTranslator",
 											"typeConversion": true,
@@ -263,7 +285,8 @@
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/datasets/DS_ASQLDB_PIPELINE_PARAMETER')]",
 				"[concat(variables('workspaceId'), '/datasets/DS_SQLSERVER')]",
-				"[concat(variables('workspaceId'), '/datasets/DS_ADSL2')]"
+				"[concat(variables('workspaceId'), '/datasets/DS_ADSL2')]",
+				"[concat(variables('workspaceId'), '/linkedServices/adventure-wks-WorkspaceDefaultStorage')]"
 			]
 		},
 		{
