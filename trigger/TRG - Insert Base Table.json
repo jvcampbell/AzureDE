@@ -2,7 +2,7 @@
 	"name": "TRG - Insert Base Table",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
