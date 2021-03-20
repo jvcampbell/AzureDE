@@ -23,9 +23,10 @@
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@concat('lake/raw/',dataset().table_catalog_name)\n",
+					"value": "@concat('lake/raw/',item().table_catalog_name)\n",
 					"type": "Expression"
-				}
+				},
+				"fileSystem": "'adventureworksfs'"
 			},
 			"compressionCodec": "snappy"
 		},
