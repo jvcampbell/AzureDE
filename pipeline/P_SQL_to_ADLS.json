@@ -76,7 +76,29 @@
 										"type": "ParquetWriteSettings"
 									}
 								},
-								"enableStaging": false,
+								"enableStaging": true,
+								"stagingSettings": {
+									"linkedServiceName": {
+										"referenceName": "adventure-wks-WorkspaceDefaultStorage",
+										"type": "LinkedServiceReference"
+									},
+									"path": "adventureworksfs/Temp"
+								},
+								"logSettings": {
+									"enableCopyActivityLog": true,
+									"copyActivityLogSettings": {
+										"logLevel": "Info",
+										"enableReliableLogging": false
+									},
+									"logLocationSettings": {
+										"linkedServiceName": {
+											"referenceName": "adventure-wks-WorkspaceDefaultStorage",
+											"type": "LinkedServiceReference"
+										},
+										"path": "adventureworksfs/Temp"
+									}
+								},
+								"dataIntegrationUnits": 2,
 								"translator": {
 									"type": "TabularTranslator",
 									"typeConversion": true,
