@@ -26,7 +26,7 @@
 					"value": "@concat('lake/raw/',item().table_catalog)\n",
 					"type": "Expression"
 				},
-				"fileSystem": "'adventureworksfs'"
+				"fileSystem": "adventureworksfs"
 			},
 			"compressionCodec": "snappy"
 		},
