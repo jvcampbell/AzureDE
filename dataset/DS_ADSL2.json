@@ -19,11 +19,11 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@{item().Table_Name}/@{formatDateTime(utcnow(),'yyyy')}/@{formatDateTime(utcnow(),'MM')}/@{formatDateTime(utcnow(),'dd')}/@{item().Table_Name}@{formatDateTime(utcnow(),'HH')}",
+					"value": "@{dataset().Table_Name}/@{formatDateTime(utcnow(),'yyyy')}/@{formatDateTime(utcnow(),'MM')}/@{formatDateTime(utcnow(),'dd')}/@{dataset().Table_Name}@{formatDateTime(utcnow(),'HH')}\n\n",
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@concat('lake/raw/on_prem2/',dataset().table_catalog_name)\n",
+					"value": "@concat('AdventureWorks_DataLake/raw/',dataset().table_catalog_name)\n",
 					"type": "Expression"
 				}
 			},
