@@ -61,7 +61,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "SELECT * FROM @{item().Table_Name}",
+										"value": "USE @{item().Table_Catalog} SELECT * FROM @{item().Table_Name}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -76,28 +76,7 @@
 										"type": "ParquetWriteSettings"
 									}
 								},
-								"enableStaging": true,
-								"stagingSettings": {
-									"linkedServiceName": {
-										"referenceName": "adventure-wks-WorkspaceDefaultStorage",
-										"type": "LinkedServiceReference"
-									},
-									"path": "adventureworksfs/Temp"
-								},
-								"logSettings": {
-									"enableCopyActivityLog": true,
-									"copyActivityLogSettings": {
-										"logLevel": "Info",
-										"enableReliableLogging": false
-									},
-									"logLocationSettings": {
-										"linkedServiceName": {
-											"referenceName": "adventure-wks-WorkspaceDefaultStorage",
-											"type": "LinkedServiceReference"
-										},
-										"path": "adventureworksfs/Temp/Pipeline-error-logs"
-									}
-								},
+								"enableStaging": false,
 								"dataIntegrationUnits": 2,
 								"translator": {
 									"type": "TabularTranslator",
@@ -119,8 +98,8 @@
 									"referenceName": "DS_ADSL2",
 									"type": "DatasetReference",
 									"parameters": {
-										"table_name": "@{item().Table_Name)",
-										"table_catalog_name": "@{item().Table_Catalog)"
+										"table_name": "@{item().Table_Name}",
+										"table_catalog_name": "@{item().Table_Catalog}"
 									}
 								}
 							]
