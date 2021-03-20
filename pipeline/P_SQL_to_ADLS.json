@@ -77,8 +77,7 @@
 										"type": "JsonWriteSettings"
 									}
 								},
-								"enableStaging": false,
-								"dataIntegrationUnits": 2
+								"enableStaging": false
 							},
 							"inputs": [
 								{
