@@ -95,7 +95,7 @@
 											"referenceName": "adventure-wks-WorkspaceDefaultStorage",
 											"type": "LinkedServiceReference"
 										},
-										"path": "adventureworksfs/Temp"
+										"path": "adventureworksfs/Temp/Pipeline-error-logs"
 									}
 								},
 								"dataIntegrationUnits": 2,
