@@ -1,0 +1,20 @@
+{
+	"name": "Create views in Azure Synapse serverless SQL pools",
+	"properties": {
+		"folder": {
+			"name": "Create metadata objects in Azure Synapse serverless SQL pools"
+		},
+		"content": {
+			"query": "DROP VIEW IF EXISTS populationView; \nGO \n \nCREATE VIEW populationView AS \nSELECT *  \nFROM OPENROWSET( \n        BULK 'csv/population/population.csv', \n        DATA_SOURCE = 'SqlOnDemandDemo', \n        FORMAT = 'CSV',  \n        FIELDTERMINATOR =',',  \n        ROWTERMINATOR = '\\n' \n    ) \nWITH ( \n    [country_code] VARCHAR (5) COLLATE Latin1_General_BIN2, \n    [country_name] VARCHAR (100) COLLATE Latin1_General_BIN2, \n    [year] smallint, \n    [population] bigint \n) AS [r];\n\nDROP VIEW IF EXISTS TaxiView; \nGO \n\nCREATE VIEW TaxiView \nAS SELECT *, nyc.filepath(1) AS [year], nyc.filepath(2) AS [month] \nFROM \n    OPENROWSET( \n        BULK 'parquet/taxi/year=*/month=*/*.parquet', \n        DATA_SOURCE = 'sqlondemanddemo', \n        FORMAT='PARQUET' \n    ) AS nyc\n\nSELECT country_name, population \nFROM populationView \nWHERE [year] = 2019 \nORDER BY  [population] DESC; \n\n\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "30daychallenge_serverlessSQL"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
