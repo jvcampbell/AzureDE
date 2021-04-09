@@ -1,5 +1,5 @@
 {
-	"name": "Transform data with Azure Synapse serverless SQL pools using CREATE EXTERNAL TABLE AS SELECT statement",
+	"name": "4 - Transform data with Azure Synapse serverless SQL pools using CREATE EXTERNAL TABLE AS SELECT statement",
 	"properties": {
 		"folder": {
 			"name": "Create metadata objects in Azure Synapse serverless SQL pools"

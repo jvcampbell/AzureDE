@@ -1,5 +1,5 @@
 {
-	"name": "Setup Script - Sample DB",
+	"name": "1 - Setup Script - Sample DB",
 	"properties": {
 		"folder": {
 			"name": "Create metadata objects in Azure Synapse serverless SQL pools"

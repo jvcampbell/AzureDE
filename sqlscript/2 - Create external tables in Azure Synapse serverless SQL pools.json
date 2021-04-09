@@ -1,5 +1,5 @@
 {
-	"name": "Create external tables in Azure Synapse serverless SQL pools",
+	"name": "2 - Create external tables in Azure Synapse serverless SQL pools",
 	"properties": {
 		"folder": {
 			"name": "Create metadata objects in Azure Synapse serverless SQL pools"

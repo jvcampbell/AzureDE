@@ -1,0 +1,20 @@
+{
+	"name": "5 - serverless SQL pools stored procedures",
+	"properties": {
+		"folder": {
+			"name": "Create metadata objects in Azure Synapse serverless SQL pools"
+		},
+		"content": {
+			"query": "/*\nOperationalize data transformation with Azure Synapse serverless \n    SQL pools using stored procedures\n*/\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "master"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
