@@ -5,13 +5,13 @@
 			"name": "Create metadata objects in Azure Synapse serverless SQL pools"
 		},
 		"content": {
-			"query": "/*\nOperationalize data transformation with Azure Synapse serverless \n    SQL pools using stored procedures\n*/\n\n",
+			"query": "/*\nOperationalize data transformation with Azure Synapse serverless \n    SQL pools using stored procedures\n*/\n\n-- this sample references external data source and external file format defined in previous section\nCREATE PROCEDURE usp_calculate_population_by_year_state\nAS\nBEGIN\n\tCREATE EXTERNAL TABLE population_by_year_state\n\tWITH (\n\t\tLOCATION = 'population_by_year_state/',\n\t\tDATA_SOURCE = destination_ds,  \n\t\tFILE_FORMAT = parquet_file_format\n\t)  \n\tAS\n\tSELECT decennialTime, stateName, SUM(population) AS population\n\tFROM\n\t\tOPENROWSET(BULK 'https://azureopendatastorage.blob.core.windows.net/censusdatacontainer/release/us_population_county/year=*/*.parquet',\n\t\tFORMAT='PARQUET') AS [r]\n\tGROUP BY decennialTime, stateName\nEND\nGO",
 			"metadata": {
 				"language": "sql"
 			},
 			"currentConnection": {
 				"poolName": "Built-in",
-				"databaseName": "master"
+				"databaseName": "30daychallenge_serverlessSQL"
 			},
 			"resultLimit": 5000
 		},
