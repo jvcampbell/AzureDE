@@ -1,0 +1,20 @@
+{
+	"name": "sp_describe_first_result_set",
+	"properties": {
+		"folder": {
+			"name": "Use Synapse Studio to analyze and visualize data via Azure Synapse serverless SQL pool"
+		},
+		"content": {
+			"query": "EXEC sp_describe_first_result_set N'\n\nSELECT decennialTime, SUM(population) AS Pop\nFROM\n    OPENROWSET(\n        BULK ''https://challengedl.dfs.core.windows.net/challenge-fs/aggregated_data/*.parquet'',\n        FORMAT=''PARQUET''\n    )  AS [result]\nGROUP BY decennialTime\n\n'",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "30daychallenge_serverlessSQL"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
