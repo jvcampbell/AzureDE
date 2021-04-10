@@ -1,0 +1,61 @@
+{
+	"name": "ds_MyTaxiView",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lnk_challenge_srvless_sql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "vendor_id",
+				"type": "varchar"
+			},
+			{
+				"name": "pickup_datetime",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "dropoff_datetime",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "passenger_count",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "trip_distance",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "fare_amount",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "tip_amount",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "tolls_amount",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "total_amount",
+				"type": "float",
+				"precision": 15
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Taxi"
+		}
+	}
+}
