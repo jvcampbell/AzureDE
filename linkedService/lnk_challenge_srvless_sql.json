@@ -1,0 +1,15 @@
+{
+	"name": "lnk_challenge_srvless_sql",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDW",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=challengewks-ondemand.sql.azuresynapse.net;Initial Catalog=\"30daychallenge_serverlessSQL \""
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
