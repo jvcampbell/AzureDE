@@ -19,14 +19,7 @@
 						"referenceName": "CETASDestination",
 						"type": "DatasetReference"
 					},
-					"logStorageSettings": {
-						"linkedServiceName": {
-							"referenceName": "DestinationStorage_dl",
-							"type": "LinkedServiceReference"
-						},
-						"path": "challenge-fs/aggregated_data"
-					},
-					"enableLogging": true,
+					"enableLogging": false,
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
 						"recursive": true,
