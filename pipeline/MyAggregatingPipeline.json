@@ -46,8 +46,11 @@
 					"secureInput": false
 				},
 				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[usp_calculate_population_by_year_state]"
+				},
 				"linkedServiceName": {
-					"referenceName": "serverlessSQLpool",
+					"referenceName": "lnk_challenge_srvless_sql",
 					"type": "LinkedServiceReference"
 				}
 			}
