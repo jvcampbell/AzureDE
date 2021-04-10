@@ -1,0 +1,20 @@
+{
+	"name": "ds_copyoutput_pq",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "challengewks-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "CopyOutput",
+				"fileSystem": "challenge-fs"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
