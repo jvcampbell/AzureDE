@@ -10,8 +10,8 @@
 				"language": "sql"
 			},
 			"currentConnection": {
-				"poolName": "Built-in",
-				"databaseName": "master"
+				"poolName": "30daychallengeSQL",
+				"databaseName": "30daychallengeSQL"
 			},
 			"resultLimit": 5000
 		},
